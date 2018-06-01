@@ -10,30 +10,37 @@ let userSchema = new mongoose.Schema({
 })
 
 /**
- * Generates hash and saves the document.
+ * Generates hash and saves the document. Returns a promise with the saved document.
  * @param password
  * @returns {Promise<any>}
  */
 userSchema.methods.setPassword = function (password) {
-  return new Promise(function (resolve, reject) {
-    bcrypt.genSalt(10).then((salt) => { // 10 remains the default hash difficulty
-      return bcrypt.hash(password, salt)
-    }).then((hashed) => {
-      this.passHash = hashed
+  return bcrypt.genSalt(10).then((salt) => { // 10 remains the default hash difficulty
+    return bcrypt.hash(password, salt)
+  }).then((hashed) => {
+    this.passHash = hashed
 
-      return this.save()
-    })
+    return this.save()
   })
 }
 
 /**
- * Compares a given password with one in the database.
+ * Compares a given password with one in the database. Returns promise that will resolve with bool value.
  * @param passwordAttempt
  * @returns {Promise<any}
  */
 userSchema.methods.checkPassword = function (passwordAttempt) {
   return bcrypt.compare(passwordAttempt, this.passHash)
 }
+
+/**
+ * Generates a JWT for providing to client after authentication.
+ * @returns {Promise<string>}
+ */
+userSchema.methods.generateJWT = function () {
+  return Promise.resolve('test')
+}
+
 let User = mongoose.model('User', userSchema)
 
 module.exports = {model: User, schema: userSchema}

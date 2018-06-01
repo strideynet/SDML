@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const jwt = require('../utils/jwt-wrapper')
 
 let userSchema = new mongoose.Schema({
   firstName: String,
@@ -35,10 +36,12 @@ userSchema.methods.checkPassword = function (passwordAttempt) {
 
 /**
  * Generates a JWT for providing to client after authentication.
+ *
+ * TODO: Strip down the object to just relevant information.
  * @returns {Promise<string>}
  */
 userSchema.methods.generateJWT = function () {
-  return Promise.resolve('test')
+  return jwt.sign(this.toObject())
 }
 
 let User = mongoose.model('User', userSchema)

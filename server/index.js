@@ -4,7 +4,8 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-mongoose.connect('mongodb://localhost/sdml').then(() => {
+let dbURL = require('config').get('dbURL')
+mongoose.connect(dbURL).then(() => {
   console.log('Database connected successfully')
 }).catch((err) => {
   console.error(err)

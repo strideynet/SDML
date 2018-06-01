@@ -1,0 +1,4 @@
+{
+  "dbURL": "mongodb://localhost/sdml",
+  "secret": "changeme"
+}

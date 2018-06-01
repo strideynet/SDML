@@ -4,7 +4,7 @@
 let jsonwebtoken = require('jsonwebtoken')
 let exports = {}
 
-let secret = 'REPLACETHISWITHCONFIGFUNCTION'
+let secret = require('config').get('secret')
 
 exports.verify = function (jwt) {
   return new Promise((resolve, reject) => {

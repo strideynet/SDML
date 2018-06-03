@@ -7,7 +7,11 @@ let userSchema = new mongoose.Schema({
   lastName: String,
   created: {type: Date, default: Date.now()},
   passHash: String,
-  email: String
+  email: {
+    type: String,
+    lowercase: true
+  },
+  permissions: [{type: String, lowercase: true}]
 })
 
 /**
@@ -26,22 +30,45 @@ userSchema.methods.setPassword = function (password) {
 }
 
 /**
+ * Checks if user can complete action and resolves with true or false. In future will handle group inheritance and other
+ * permission features, hence it returning a promise as it might need to hit the DB.
+ * @param permission
+ * @returns {Promise<Boolean>}
+ */
+userSchema.methods.checkPermission = function (permission) {
+  return new Promise((resolve, reject) => {
+    if (this.permissions.indexOf(permission) >= 0) {
+      resolve(true)
+    } else {
+      resolve(false)
+    }
+
+    reject(new Error('Placeholder ERR')) // Impossible path but acts as placeholder for DB errors.
+  })
+}
+
+/**
  * Compares a given password with one in the database. Returns promise that will resolve with bool value.
  * @param passwordAttempt
  * @returns {Promise<any}
  */
 userSchema.methods.checkPassword = function (passwordAttempt) {
-  return bcrypt.compare(passwordAttempt, this.passHash)
+  return bcrypt.compare(passwordAttempt, this.passHash) // bcrypt returns a promise with bool true/false
 }
 
 /**
  * Generates a JWT for providing to client after authentication.
  *
- * TODO: Strip down the object to just relevant information.
  * @returns {Promise<string>}
  */
 userSchema.methods.generateJWT = function () {
-  return jwt.sign(this.toObject())
+  return jwt.sign({
+    firstName: this.firstName,
+    lastName: this.lastName,
+    email: this.email,
+    _id: this._id,
+    permissions: this.permissions
+  })
 }
 
 let User = mongoose.model('User', userSchema)

@@ -9,15 +9,17 @@ const User = require('../../models/user').model
 module.exports = function (req, res, next) {
   if (req.body.email && req.body.password) { // Check fields exist
     User.findOne({email: req.body.email.toLowerCase()}).exec().then((user) => { // Retrieve user from DB, will be null if no user.
-      if (user) return user.checkPassword(req.body.password)
+      if (user) {
+        return user.checkPassword(req.body.password).then((correct) => {
+          if (correct) {
+            return user.generateJWT() // Returns a promise resolving with JWT
+          }
 
-      return Promise.reject(new Error('No user found'))
-    }).then((correct) => {
-      if (correct) {
-        return User.generateJWT()
+          return Promise.reject(new Error('Password incorrect'))
+        })
       }
 
-      return Promise.reject(new Error('Password incorrect'))
+      return Promise.reject(new Error('No user found'))
     }).then((jwt) => {
       res.status(200).json({jwt})
     }).catch((err) => {

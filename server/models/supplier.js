@@ -6,6 +6,11 @@ let contactSchema = new mongoose.Schema({
   description: String,
   email: String,
   telephone: String,
+  address: {
+    firstLine: String,
+    secondLine: String,
+    postCode: String
+  },
   notes: [noteSchema]
 })
 
@@ -19,4 +24,6 @@ let supplierSchema = new mongoose.Schema({
   contacts: [contactSchema]
 })
 
-let Supplier = mongoose.model('Supplier', supplierSchema )
+let Supplier = mongoose.model('Supplier', supplierSchema)
+
+module.exports = {model: Supplier, schema: supplierSchema}

@@ -1,7 +1,7 @@
 <template>
   <footer class="app-footer">
-    <span><a href="http://coreui.io/pro/">CoreUI Pro</a> &copy; 2018 creativeLabs.</span>
-    <span class="ml-auto">Powered by <a href="http://coreui.io/pro/">CoreUI Pro</a></span>
+    <span>SDML &copy; 2018 </span>
+    <span class="ml-auto">Powered by Fairy Dust</span>
   </footer>
 </template>
 <script>

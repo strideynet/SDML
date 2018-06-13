@@ -11,7 +11,7 @@ let noteSchema = new mongoose.Schema({
     validate: {
       isAsync: true,
       validator: function (v, cb) {
-        if (mongoose.modelNames().indexOf(v) >= 0) {
+        if (mongoose.modelNames().indexOf(v) >= 0) { // Check model name is a valid registered one
           return cb(true)
         }
 

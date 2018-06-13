@@ -64,12 +64,12 @@ export default {
         {
           name: 'Create',
           icon: 'icon-plus',
-          url: '/customers/create'
+          url: '/customer/create'
         },
         {
           name: 'Search',
           icon: 'icon-magnifier',
-          url: '/customers/search'
+          url: '/customer/search'
         }
       ]
     }

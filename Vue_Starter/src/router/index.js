@@ -62,6 +62,42 @@ export default new Router({
               name: 'Create'
             }
           ]
+        },
+        {
+          path: 'customer',
+          name: 'Customers',
+          redirect: '/customer/search',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'search',
+              name: 'Search'
+            },
+            {
+              path: 'create',
+              name: 'Create'
+            }
+          ]
+        },
+        {
+          path: 'supplier',
+          name: 'Suppliers',
+          redirect: '/supplier/search',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'search',
+              name: 'Search'
+            },
+            {
+              path: 'create',
+              name: 'Create'
+            }
+          ]
         }
       ]
     }

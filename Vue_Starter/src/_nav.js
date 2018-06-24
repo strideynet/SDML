@@ -72,6 +72,23 @@ export default {
           url: '/customer/search'
         }
       ]
+    },
+    {
+      name: 'Work Orders',
+      url: '/customers',
+      icon: 'icon-wrench',
+      children: [
+        {
+          name: 'Create',
+          icon: 'icon-plus',
+          url: '/customer/create'
+        },
+        {
+          name: 'Search',
+          icon: 'icon-magnifier',
+          url: '/customer/search'
+        }
+      ]
     }
   ]
 }

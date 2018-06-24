@@ -6,7 +6,8 @@ import Full from '@/containers/Full'
 
 // Views
 import Dashboard from '@/views/Dashboard'
-import PurchaseOrders from '@/views/PurchaseOrders'
+import PurchaseOrders from '@/views/po/PurchaseOrders'
+import NewPurchaseOrder from '@/views/po/NewPurchaseOrder'
 
 Vue.use(Router)
 
@@ -41,7 +42,8 @@ export default new Router({
             },
             {
               path: 'create',
-              name: 'Create'
+              name: 'Create',
+              component: NewPurchaseOrder
             }
           ]
         },

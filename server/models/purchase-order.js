@@ -13,7 +13,8 @@ let purchaseOrderSchema = new mongoose.Schema({
   expectedDelivery: Date,
   number: Number,
   ordered: {type: Date, default: Date.now()},
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  workOrder: [{type: mongoose.Schema.Types.ObjectId}]
 })
 
 purchaseOrderSchema.plugin(autoIncrement.plugin, {model: 'PurchaseOrder', field: 'number'})

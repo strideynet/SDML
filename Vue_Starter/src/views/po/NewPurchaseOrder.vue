@@ -9,7 +9,7 @@
           <b-row>
             <b-col sm="12">
               <b-form-group>
-                <label for="title">PO Title</label>
+                <label>PO Title</label>
                 <b-form-input required type="text" id="title" v-model="newPurchase.title" placeholder="PO Title"></b-form-input>
               </b-form-group>
             </b-col>
@@ -17,7 +17,7 @@
           <b-row>
             <b-col sm="12">
               <b-form-group>
-                <label for="ccnumber">Supplier</label>
+                <label>Supplier</label>
                 <vue-select v-model="newItem.supplier" :options="supplierOptions" placeholder="Select option"></vue-select>
               </b-form-group>
             </b-col>
@@ -25,8 +25,8 @@
           <b-row>
             <b-col sm="12">
               <b-form-group>
-                <label for="ccnumber">Associated Work Orders</label>
-                <vue-select multiple v-model="newItem.workOrder" :options="supplierOptions" placeholder="Select option"></vue-select>
+                <label>Associated Work Orders</label>
+                <vue-select multiple v-model="newItem.workOrder" :options="workOrderOptions" placeholder="Select option"></vue-select>
               </b-form-group>
             </b-col>
           </b-row>
@@ -76,6 +76,11 @@
           {value: 'bsonid1', label: 'Tremayne'},
           {value: 'bsonid2', label: 'Gibsons'},
           {value: 'bsonid3', label: 'Friendly Steel co'}
+        ],
+        workOrderOptions: [
+          {value: 'bsonid1', label: 'N1774'},
+          {value: 'bsonid2', label: 'N1775'},
+          {value: 'bsonid3', label: 'N1776'}
         ]
       }
     }

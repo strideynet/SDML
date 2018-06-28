@@ -27,6 +27,7 @@
     "mini-toastr": "0.7.2",
     "simple-line-icons": "^2.4.1",
     "text-mask-addons": "3.7.1",
+    "v-money": "^0.8.1",
     "vue": "2.5.13",
     "vue-chartjs": "3.1.0",
     "vue-codemirror": "4.0.2",

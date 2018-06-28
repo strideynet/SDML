@@ -103,7 +103,7 @@
           }
         ],
         newItem: {
-          name: '',
+          name: 'Some Item',
           quantity: 1,
           price: null
         },
@@ -127,7 +127,9 @@
     },
     methods: {
       appendNewItem: function () {
-        this.newPurchase.items.push(Object.assign({}, this.newItem)) // Ensure deep copy.
+        if (this.newItem.name !== '') {
+          this.newPurchase.items.push(Object.assign({}, this.newItem)) // Ensure deep copy.
+        }
       },
       deleteItem: function (item) {
         console.log(item)
